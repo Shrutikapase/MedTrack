@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Register | MedTrack</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <div class="logo">
+            MedTrack
+        </div>
+
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/login">Login</a>
+        </div>
+
+    </nav>
+
+
+    <main class="auth-container">
+
+        <div class="auth-card">
+
+            <h1>Create Account</h1>
+
+            <p class="auth-description">
+                Register with MedTrack to access healthcare services.
+            </p>
+
+
+            {% if error %}
+                <div class="error-message">
+                    {{ error }}
+                </div>
+            {% endif %}
+
+
+            <form method="POST" action="/register">
+
+                <label>Full Name</label>
+
+                <input
+                    type="text"
+                    name="name"
+                    placeholder="Enter your full name"
+                    required
+                >
+
+
+                <label>Email</label>
+
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="Enter your email"
+                    required
+                >
+
+
+                <label>Password</label>
+
+                <input
+                    type="password"
+                    name="password"
+                    placeholder="Create a password"
+                    required
+                >
+
+
+                <label>Role</label>
+
+                <select name="role" required>
+
+                    <option value="">
+                        Select your role
+                    </option>
+
+                    <option value="patient">
+                        Patient
+                    </option>
+
+                    <option value="doctor">
+                        Doctor
+                    </option>
+
+                </select>
+
+
+                <button type="submit" class="auth-button">
+                    Create Account
+                </button>
+
+            </form>
+
+
+            <p class="auth-footer">
+
+                Already have an account?
+
+                <a href="/login">
+                    Login
+                </a>
+
+            </p>
+
+        </div>
+
+    </main>
+
+</body>
+</html>

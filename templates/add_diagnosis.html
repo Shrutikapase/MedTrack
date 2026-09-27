@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Diagnosis - MedTrack</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<nav class="navbar">
+    <div class="logo">MedTrack</div>
+
+    <div class="nav-links">
+        <a href="{{ url_for('doctor_dashboard') }}">Dashboard</a>
+        <a href="{{ url_for('logout') }}">Logout</a>
+    </div>
+</nav>
+
+<div class="auth-container">
+
+    <div class="auth-card">
+
+        <h2>Add Diagnosis</h2>
+
+        <p class="auth-subtitle">
+            Enter diagnosis and treatment details
+        </p>
+
+        {% if appointment %}
+
+            <div class="dashboard-card" style="margin-bottom: 20px;">
+
+                <h3>Appointment Details</h3>
+
+                <p>
+                    <strong>Patient:</strong>
+                    {{ appointment.name }}
+                </p>
+
+                <p>
+                    <strong>Date:</strong>
+                    {{ appointment.appointment_date }}
+                </p>
+
+                <p>
+                    <strong>Time:</strong>
+                    {{ appointment.appointment_time }}
+                </p>
+
+                <p>
+                    <strong>Reason:</strong>
+                    {{ appointment.reason }}
+                </p>
+
+            </div>
+
+        {% endif %}
+
+        {% if error %}
+            <div class="error-message">
+                {{ error }}
+            </div>
+        {% endif %}
+
+        <form method="POST">
+
+            <div class="form-group">
+                <label>Diagnosis</label>
+
+                <textarea
+                    name="diagnosis"
+                    rows="4"
+                    placeholder="Enter diagnosis..."
+                    required
+                ></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Prescription</label>
+
+                <textarea
+                    name="prescription"
+                    rows="4"
+                    placeholder="Enter medicines or prescription..."
+                ></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Doctor's Notes</label>
+
+                <textarea
+                    name="notes"
+                    rows="4"
+                    placeholder="Enter additional notes..."
+                ></textarea>
+            </div>
+
+            <button type="submit" class="auth-button">
+                Save Medical Record
+            </button>
+
+        </form>
+
+        <div class="auth-footer">
+            <a href="{{ url_for('doctor_dashboard') }}">
+                ← Back to Dashboard
+            </a>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Dashboard - MedTrack</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <div class="logo">MedTrack</div>
+
+    <div class="nav-links">
+        <a href="{{ url_for('patient_dashboard') }}">Dashboard</a>
+        <a href="{{ url_for('book_appointment') }}">Book Appointment</a>
+        <a href="{{ url_for('medical_history') }}">Medical History</a>
+        <a href="{{ url_for('logout') }}">Logout</a>
+    </div>
+
+</nav>
+
+
+<div class="dashboard">
+
+    <div class="dashboard-header">
+
+        <div>
+            <h1>Patient Dashboard</h1>
+
+            <p>
+                Welcome, {{ session.get('user_name', 'Patient') }}
+            </p>
+        </div>
+
+        <a href="{{ url_for('book_appointment') }}"
+           class="auth-button">
+            + Book Appointment
+        </a>
+
+    </div>
+
+
+    <!-- Quick Actions -->
+
+    <div class="dashboard-grid">
+
+        <div class="dashboard-card">
+
+            <h3>Book Appointment</h3>
+
+            <p>
+                Schedule an appointment with an available doctor.
+            </p>
+
+            <br>
+
+            <a href="{{ url_for('book_appointment') }}"
+               class="auth-button">
+                Book Now
+            </a>
+
+        </div>
+
+
+        <div class="dashboard-card">
+
+            <h3>Medical History</h3>
+
+            <p>
+                View your previous diagnoses, prescriptions and
+                doctor's notes.
+            </p>
+
+            <br>
+
+            <a href="{{ url_for('medical_history') }}"
+               class="auth-button">
+                View History
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- Appointments -->
+
+    <div style="margin-top: 35px;">
+
+        <h2>My Appointments</h2>
+
+        {% if appointments %}
+
+            <div class="dashboard-grid">
+
+                {% for appointment in appointments %}
+
+                    <div class="dashboard-card">
+
+                        <h3>
+                            {{ appointment.doctor_name }}
+                        </h3>
+
+                        <p>
+                            <strong>Date:</strong>
+                            {{ appointment.appointment_date }}
+                        </p>
+
+                        <p>
+                            <strong>Time:</strong>
+                            {{ appointment.appointment_time }}
+                        </p>
+
+                        <p>
+                            <strong>Reason:</strong>
+                            {{ appointment.reason }}
+                        </p>
+
+                        <p>
+                            <strong>Status:</strong>
+                            {{ appointment.status }}
+                        </p>
+
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+        {% else %}
+
+            <div class="dashboard-card">
+
+                <h3>No Appointments</h3>
+
+                <p>
+                    You currently have no appointments.
+                </p>
+
+                <br>
+
+                <a href="{{ url_for('book_appointment') }}"
+                   class="auth-button">
+                    Book Your First Appointment
+                </a>
+
+            </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical History - MedTrack</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <div class="logo">MedTrack</div>
+
+    <div class="nav-links">
+        <a href="{{ url_for('patient_dashboard') }}">Dashboard</a>
+        <a href="{{ url_for('book_appointment') }}">Book Appointment</a>
+        <a href="{{ url_for('logout') }}">Logout</a>
+    </div>
+
+</nav>
+
+<div class="dashboard">
+
+    <div class="dashboard-header">
+
+        <div>
+            <h1>Medical History</h1>
+            <p>View your previous diagnoses and prescriptions.</p>
+        </div>
+
+    </div>
+
+    {% if records %}
+
+        <div class="dashboard-grid">
+
+            {% for record in records %}
+
+                <div class="dashboard-card">
+
+                    <h3>
+                        Dr. {{ record.doctor_name }}
+                    </h3>
+
+                    <p>
+                        <strong>Date:</strong>
+                        {{ record.record_date }}
+                    </p>
+
+                    <hr>
+
+                    <p>
+                        <strong>Diagnosis</strong>
+                    </p>
+
+                    <p>
+                        {{ record.diagnosis or "Not provided" }}
+                    </p>
+
+                    <p>
+                        <strong>Prescription</strong>
+                    </p>
+
+                    <p>
+                        {{ record.prescription or "Not provided" }}
+                    </p>
+
+                    <p>
+                        <strong>Doctor's Notes</strong>
+                    </p>
+
+                    <p>
+                        {{ record.notes or "No additional notes" }}
+                    </p>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    {% else %}
+
+        <div class="dashboard-card">
+
+            <h3>No Medical Records</h3>
+
+            <p>
+                Your medical history will appear here after a doctor
+                adds a diagnosis.
+            </p>
+
+        </div>
+
+    {% endif %}
+
+</div>
+
+</body>
+</html>

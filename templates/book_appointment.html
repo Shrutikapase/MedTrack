@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Appointment - MedTrack</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<nav class="navbar">
+    <div class="logo">MedTrack</div>
+
+    <div class="nav-links">
+        <a href="{{ url_for('patient_dashboard') }}">Dashboard</a>
+        <a href="{{ url_for('medical_history') }}">Medical History</a>
+        <a href="{{ url_for('logout') }}">Logout</a>
+    </div>
+</nav>
+
+<div class="auth-container">
+
+    <div class="auth-card">
+
+        <h2>Book Appointment</h2>
+        <p class="auth-subtitle">
+            Schedule an appointment with a doctor
+        </p>
+
+        {% if error %}
+            <div class="error-message">
+                {{ error }}
+            </div>
+        {% endif %}
+
+        <form method="POST">
+
+            <div class="form-group">
+                <label>Select Doctor</label>
+
+                <select name="doctor_id" required>
+                    <option value="">Choose a doctor</option>
+
+                    {% for doctor in doctors %}
+                        <option value="{{ doctor.user_id }}">
+                            {{ doctor.name }} — {{ doctor.email }}
+                        </option>
+                    {% endfor %}
+
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Appointment Date</label>
+                <input
+                    type="date"
+                    name="appointment_date"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label>Appointment Time</label>
+                <input
+                    type="time"
+                    name="appointment_time"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label>Reason for Visit</label>
+
+                <textarea
+                    name="reason"
+                    rows="4"
+                    placeholder="Enter reason for appointment..."
+                    required
+                ></textarea>
+            </div>
+
+            <button type="submit" class="auth-button">
+                Book Appointment
+            </button>
+
+        </form>
+
+        <div class="auth-footer">
+            <a href="{{ url_for('patient_dashboard') }}">
+                ← Back to Dashboard
+            </a>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

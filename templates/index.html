@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MedTrack | Healthcare Management System</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <div class="logo">
+            MedTrack
+        </div>
+
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/login">Login</a>
+            <a href="/register">Register</a>
+        </div>
+
+    </nav>
+
+
+    <main class="hero">
+
+        <div class="hero-content">
+
+            <p class="tagline">
+                HEALTHCARE MANAGEMENT PLATFORM
+            </p>
+
+            <h1>
+                Better Communication Between
+                <span>Doctors & Patients</span>
+            </h1>
+
+            <p class="description">
+                MedTrack is a cloud-based healthcare management system
+                designed to simplify appointments, medical records,
+                diagnosis submissions, and patient-doctor communication.
+            </p>
+
+            <div class="buttons">
+
+                <a href="/register" class="btn primary">
+                    Get Started
+                </a>
+
+                <a href="/login" class="btn secondary">
+                    Login
+                </a>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <section class="features">
+
+        <div class="feature-card">
+            <h3>Appointments</h3>
+            <p>
+                Patients can request and manage appointments
+                with doctors.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <h3>Medical Records</h3>
+            <p>
+                Access and manage important medical history
+                through one platform.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <h3>Secure Access</h3>
+            <p>
+                Role-based access helps protect sensitive
+                healthcare information.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <h3>Notifications</h3>
+            <p>
+                Appointment and diagnosis updates can be
+                delivered through notifications.
+            </p>
+        </div>
+
+    </section>
+
+</body>
+</html>
